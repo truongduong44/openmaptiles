@@ -10,11 +10,11 @@ tables:
     - name: geometry
       type: geometry
     - name: housenumber
-      key: addr:housenumber
+      key: voting
       type: string
     type_mappings:
       points:
-        addr:housenumber:
+        voting:
         - __any__
       polygons:
         addr:housenumber:

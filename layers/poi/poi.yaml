@@ -73,7 +73,7 @@ layer:
         harbor:
           subclass: ['marina', 'dock']
         car:
-          subclass: ['car', 'car_repair', 'car_parts', 'taxi']
+          subclass: ['car', 'car_repair', 'taxi']
         hospital:
           subclass: ['hospital', 'nursing_home', 'clinic']
         cemetery:
@@ -138,12 +138,14 @@ layer:
           Original value of [`indoor`](http://wiki.openstreetmap.org/wiki/Key:indoor) tag.
       values:
       - 1
+    voting: Value of the [`voting`](http://wiki.openstreetmap.org/wiki/Key:voting) tag.
+
   datasource:
     geometry_field: geometry
     key_field: osm_id
     key_field_as_attribute: no
     srid: 900913
-    query: (SELECT osm_id, geometry, name, name_en, name_de, {name_languages}, class, subclass, agg_stop, layer, level, indoor, rank FROM layer_poi(!bbox!, z(!scale_denominator!), !pixel_width!)) AS t
+    query: (SELECT osm_id, geometry, name, name_en, name_de, {name_languages}, class, subclass, agg_stop, layer, level, indoor, voting, rank FROM layer_poi(!bbox!, z(!scale_denominator!), !pixel_width!)) AS t
 schema:
   - ./public_transport_stop_type.sql
   - ./class.sql

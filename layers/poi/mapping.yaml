@@ -141,7 +141,6 @@ def_poi_mapping_shop: &poi_mapping_shop
   - camera
   - car
   - car_repair
-  - car_parts
   - carpet
   - charity
   - chemist
@@ -316,6 +315,10 @@ def_poi_mapping_tourism: &poi_mapping_tourism
 def_poi_mapping_waterway: &poi_mapping_waterway
   - dock
 
+def_poi_mapping_voting: &poi_mapping_voting
+  - 1.0 .. 5.0
+  - __any__
+
 def_poi_fields: &poi_fields
   - name: osm_id
     type: id
@@ -363,6 +366,9 @@ def_poi_fields: &poi_fields
   - name: sport
     key: sport
     type: string
+  - name: voting
+    key: voting
+    type: string
 
 def_poi_mapping: &poi_mapping
   aerialway: *poi_mapping_aerialway
@@ -378,6 +384,7 @@ def_poi_mapping: &poi_mapping
   sport: *poi_mapping_sport
   tourism: *poi_mapping_tourism
   waterway: *poi_mapping_waterway
+  voting: *poi_mapping_voting
 
 tables:
   # etldoc: imposm3 -> osm_poi_point

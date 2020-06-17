@@ -363,11 +363,11 @@ This is generating `.mbtiles` for your area :  [ MIN_ZOOM: "0"  - MAX_ZOOM: "7" 
 ./quickstart.sh yukon                        # Yukon, Canada
 ```
 ### Using your own OSM data
-Mbtiles can be generated from an arbitrary osm.pbf (e.g. for a region that is not covered by an existing extract) by making the `data/` directory and placing an *-latest.osm.pbf inside. Inside of folder have to be `docker-compose-config.yml` file too, otherwize whole folder `data/` will be deleted and `download-osm` will try to download osm.pbf file from `geofabric`, `osmfr` or `bbbike`.
+Mbtiles can be generated from an arbitrary osm.pbf (e.g. for a region that is not covered by an existing extract) by making the `data/` directory and placing an osm.pbf inside/
 
 ```
 mkdir -p data
-mv my-latest.osm.pbf data/
+mv my.osm.pbf data/
 ./quickstart.sh my
 ```
 
@@ -384,17 +384,20 @@ and the generated maps are going to be available in webbrowser on [localhost:808
 This is only a quick preview, because your mbtiles only generated to zoom level 7 !
 
 
-### Set which zooms to generate
+### Change MIN_ZOOM and MAX_ZOOM
 
-modify the settings in the `.env` file, the defaults:
-* `MIN_ZOOM=0`
-* `MAX_ZOOM=7`
+modify the settings in the `.env`  file, the defaults :
+* QUICKSTART_MIN_ZOOM=0
+* QUICKSTART_MAX_ZOOM=7
 
-Delete the `./data/<area>.dc-config.yml` file, and re-start `./quickstart.sh <area>`
+and re-start  `./quickstart.sh `
+*  the new config file re-generating to here  ./data/docker-compose-config.yml
+*  Known problems:
+    * If you use same area - then the ./data/docker-compose-config.yml not re-generating, so you have to modify by hand!
 
 Hints:
-* Small increments! Never starts with the `MAX_ZOOM = 14`
-* The suggested  `MAX_ZOOM = 14`  - use only with small extracts
+* Small increments! Never starts with the MAX_ZOOM = 14
+* The suggested  MAX_ZOOM = 14  - use only with small extracts
 
 ### Check other commands
 

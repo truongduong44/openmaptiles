@@ -83,10 +83,10 @@ make
 ```
 
 You can execute the following manual steps (for better understanding)
-or use the provided `quickstart.sh` script to automatically download and import given area. If area is not given, albania will be imported.
+or use the provided `quickstart.sh` script.
 
 ```
-./quickstart.sh <area>
+./quickstart.sh
 ```
 
 ### Prepare the Database
@@ -94,7 +94,7 @@ or use the provided `quickstart.sh` script to automatically download and import 
 Now start up the database container.
 
 ```bash
-make start-db
+make db-start
 ```
 
 Import external data from [OpenStreetMapData](http://osmdata.openstreetmap.de/), [Natural Earth](http://www.naturalearthdata.com/) and [OpenStreetMap Lake Labels](https://github.com/lukasmartinelli/osm-lakelines).
@@ -103,10 +103,10 @@ Import external data from [OpenStreetMapData](http://osmdata.openstreetmap.de/),
 make import-data
 ```
 
-Download OpenStreetMap data extracts from any source like [Geofabrik](http://download.geofabrik.de/), and store the PBF file in the `./data` directory. To use a specific download source, use `download-geofabrik`, `download-bbbike`, or `download-osmfr`, or use `download` to make it auto-pick the area. You can use `area=planet` for the entire OSM dataset (very large).  Note that if you have more than one `data/*.osm.pbf` file, every `make` command will always require `area=...` parameter (or you can just `export area=...` first).
+[Download OpenStreetMap data extracts](http://download.geofabrik.de/) and store the PBF file in the `./data` directory.
 
 ```bash
-make download area=albania
+make download-geofabrik area=albania
 ```
 
 [Import OpenStreetMap data](https://github.com/openmaptiles/openmaptiles-tools/tree/master/docker/import-osm) with the mapping rules from
@@ -135,11 +135,11 @@ make
 make import-sql
 ```
 
-Now you are ready to **generate the vector tiles**. By default, `./.env` specifies the entire planet BBOX for zooms 0-7, but running `generate-dc-config` will analyze the data file and set the `BBOX` param to limit tile generation. It will also modify `MIN_ZOOM` and `MAX_ZOOM` values based on the .env, but can be changed.
+Now you are ready to **generate the vector tiles**. Using environment variables
+you can limit the bounding box and zoom levels of what you want to generate (`docker-compose.yml`).
 
 ```
-make generate-dc-config  # compute data bbox -- not needed for the whole planet
-make generate-tiles      # generate tiles
+make generate-tiles
 ```
 
 ## License
